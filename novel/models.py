@@ -5,7 +5,7 @@ from django.utils import timezone
 
 
 class Novel(models.Model):
-    titulo = models.CharField
+    titulo = models.CharField(max_length=50, verbose_name='Título')
     autor = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     data = models.DateTimeField(default=timezone.now)
     conteudo = models.TextField()
@@ -13,3 +13,6 @@ class Novel(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING, blank=True, null=True)
     imagem = models.ImageField(upload_to='novel_img/%Y/%m/%d')
     publicado = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.titulo
