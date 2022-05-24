@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView
-from django.http import HttpResponse, HttpResponseRedirect
-from django.urls import reverse
+from .models import Novel
 
 
 class NovelIndex(ListView):
-    pass
+    model = Novel
+    template_name = 'novel/index.html'
 
 
 class NovelBusca(NovelIndex):
