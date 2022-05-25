@@ -7,6 +7,7 @@ from .models import Novel
 class NovelIndex(ListView):
     model = Novel
     template_name = 'novel/index.html'
+    context_object_name = 'novels'
 
 
 class NovelBusca(NovelIndex):
