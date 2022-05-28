@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load humanize %}
 
 {% block conteudo %}
 <br/>
@@ -14,7 +15,11 @@
                             <!--begin::Pic-->
                             <div>
                                 <div>
-                                    <img src="{{ novel.imagem.url }}" alt="image">
+                                    {% if novel.imagem %}
+                                    <a href="{% url 'novel_detalhes' novel.id %}">
+                                        <img src="{{ novel.imagem.url }}" alt="image">
+                                    </a>
+                                    {% endif %}
                                 </div>
                             </div>
                             <!--end::Pic-->
@@ -23,7 +28,7 @@
                         <!--begin::Desc-->
                         <!--begin::Title-->
                         <div class="d-flex flex-column">
-                            <a href="#" class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">{{ novel.titulo }}</a>
+                            <a href="{% url 'novel_detalhes' novel.id %}" class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">{{ novel.titulo }}</a>
                             <span class="text-muted font-weight-bold">{{ novel.categoria }}</span>
                             <br/>
                         </div>
@@ -33,20 +38,20 @@
                         <!--begin::Info-->
                         <div class="mb-7">
                             <div class="d-flex justify-content-between align-items-center">
-                                <span class="text-dark-75 font-weight-bolder mr-2">Qtd. de volumes:</span>
-                                <a href="#" class="text-muted text-hover-primary">{{ novel.volume }}</a>
+                                <span class="text-dark-75 font-weight-bolder mr-2">Número de volumes:</span>
+                                <a href="{% url 'novel_detalhes' novel.id %}" class="text-muted text-hover-primary">{{ novel.volume }}</a>
                             </div>
                             <div class="d-flex justify-content-between align-items-cente my-1">
-                                <span class="text-dark-75 font-weight-bolder mr-2">Classificação:</span>
-                                <a href="#" class="text-muted text-hover-primary">1ª</a>
+                                <span class="text-dark-75 font-weight-bolder mr-2">Comentários:</span>
+                                <a href="#" class="text-muted text-hover-primary">{{ novel.comentario_set.count }}</a>
                             </div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="text-dark-75 font-weight-bolder mr-2">Publicado em:</span>
-                                <span class="text-muted font-weight-bold">{{ novel.data }}</span>
+                                <span class="text-muted font-weight-bold">{{ novel.data|naturalday|title }}</span>
                             </div>
                         </div>
                         <!--end::Info-->
-                        <a href="#"
+                        <a href="{% url 'novel_detalhes' novel.id %}"
                            class="btn btn-block btn-sm btn-light-success font-weight-bolder text-uppercase py-4">Ler</a>
                     </div>
                 </div>

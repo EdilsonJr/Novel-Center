@@ -130,5 +130,5 @@ dmypy.json
 
 # Datasets folder
 media/
-db.sqlite3
 
+db.sqlite3
