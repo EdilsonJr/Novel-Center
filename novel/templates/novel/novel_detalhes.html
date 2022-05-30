@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{%block title%}{{ novel.titulo }} - NovelCenter{%endblock%}
+{% block conteudo %}
+
+<div class="container" xmlns="http://www.w3.org/1999/html">
+    <div class="row pt-5">
+        <div class="col-xl"></div>
+        <div class="col-xl-8 text-center">
+            <p class="text-muted">
+                <small>
+                    {{ novel.autor }} | {{ novel.data }} | {{ novel.categoria }}
+                </small>
+            </p>
+            <h3 class="display-3">{{ novel.titulo }}</h3>
+            <div>
+                {% if novel.wallpaper %}
+                <img class="img-fluid pb-5 " src="{{ novel.wallpaper.url }}" alt="{{ novel.titulo }}">
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-xl"></div>
+    </div>
+
+    <div class="row pt-5">
+        <div class="col-xl"></div>
+        <div class="col-xl-8">
+            <br/>
+            <h4><strong>Sinopse</strong> - {{ novel.excerto }}</h4></br>
+            <h4><strong>Títulos alternativos</strong> - Youkoso Jitsuryoku Shijou Shugi no Kyoushitsu, You Jitsu</h4>
+            <h4><strong>Autor</strong> - Shougo Kinugasa</h4>
+            <h4><strong>Ilustrador</strong> - Shunsaku Tomose</h4>
+            <h4><strong>Gênero</strong> - {{ novel.categoria }}</h4>
+            <h4><strong>Status</strong> - Em andamento</h4>
+            <h4><strong>Volumes disponiveis</strong> - {{ novel.volume }}</h4>
+        </div>
+        <div class="col-xl"></div>
+    </div>
+
+    </br>
+    </br>
+
+    <div>
+        <div align="center">
+            <h1 class="display-4">Volumes</h1>
+        </div>
+    </div>
+
+    </br>
+
+    <div class="d-flex flex-column-fluid">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                    <div class="card card-custom gutter-b card-stretch">
+                        <div class="card-body pt-4">
+                            <!--begin::User-->
+                            <div class="d-flex align-items-center mb-7">
+                                <!--begin::Pic-->
+                                <div>
+
+                                    <a href="#">
+                                        <img src="#" alt="image">
+                                    </a>
+
+                                </div>
+                                <!--end::Pic-->
+                            </div>
+                            <!--end::User-->
+                            <!--begin::Desc-->
+                            <!--begin::Title-->
+                            <div class="d-flex flex-column">
+                                <a href="#"
+                                   class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0"></a>
+                                <span class="text-muted font-weight-bold"></span>
+                                <br/>
+                            </div>
+                            <!--end::Title-->
+                            <p class="mb-7">
+                                <!--end::Desc-->
+                                <!--begin::Info-->
+                            <div class="mb-7">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="text-dark-75 font-weight-bolder mr-2">Número de volumes:</span>
+                                    <a href="#" class="text-muted text-hover-primary"></a>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-cente my-1">
+                                    <span class="text-dark-75 font-weight-bolder mr-2">Comentários:</span>
+                                    <a href="#" class="text-muted text-hover-primary"></a>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="text-dark-75 font-weight-bolder mr-2">Publicado em:</span>
+                                    <span class="text-muted font-weight-bold"></span>
+                                </div>
+                            </div>
+                            <!--end::Info-->
+                            <a href="{% url 'novel_detalhes' novel.id %}"
+                               class="btn btn-block btn-sm btn-light-success font-weight-bolder text-uppercase py-4">Ler</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

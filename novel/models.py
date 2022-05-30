@@ -14,6 +14,7 @@ class Novel(models.Model):
     volume = models.IntegerField()
     categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING, blank=True, null=True)
     imagem = models.ImageField(upload_to='novel_img/%Y/%m/%d')
+    wallpaper = models.ImageField(upload_to='novel_img/%Y/%m/%d')
     publicado = models.BooleanField(default=False)
 
     def __str__(self):
