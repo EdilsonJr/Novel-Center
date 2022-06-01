@@ -12,6 +12,7 @@
                 </small>
             </p>
             <h3 class="display-3">{{ novel.titulo }}</h3>
+            <div class="card-footer"></div>
             <div>
                 {% if novel.wallpaper %}
                 <img class="img-fluid pb-5 " src="{{ novel.wallpaper.url }}" alt="{{ novel.titulo }}">
@@ -25,19 +26,23 @@
         <div class="col-xl"></div>
         <div class="col-xl-8">
             <br/>
-            <h4><strong>Sinopse</strong> - {{ novel.excerto }}</h4></br>
-            <h4><strong>Títulos alternativos</strong> - Youkoso Jitsuryoku Shijou Shugi no Kyoushitsu, You Jitsu</h4>
-            <h4><strong>Autor</strong> - Shougo Kinugasa</h4>
-            <h4><strong>Ilustrador</strong> - Shunsaku Tomose</h4>
+            <h4>{{ novel.excerto|safe }} </h4></br>
+            <h4><strong>Títulos alternativos</strong> - {{ novel.outros_titulos }}</h4>
+            <h4><strong>Autor</strong> - {{ novel.escritor }}</h4>
+            <h4><strong>Ilustrador</strong> - {{ novel.ilustrador }}</h4>
             <h4><strong>Gênero</strong> - {{ novel.categoria }}</h4>
-            <h4><strong>Status</strong> - Em andamento</h4>
-            <h4><strong>Volumes disponiveis</strong> - {{ novel.volume }}</h4>
+            <h4><strong>Status</strong> - {{ novel.status }}</h4>
+            <h4><strong>Volumes disponiveis</strong> - {{ novel.qdt_volumes }}</h4>
+            <h4><strong>teste</strong> - {{ novel.titulo_vol }}</h4>
         </div>
         <div class="col-xl"></div>
     </div>
 
     </br>
     </br>
+
+    <div class="card-footer"></div>
+
 
     <div>
         <div align="center">
@@ -60,7 +65,7 @@
                                 <div>
 
                                     <a href="#">
-                                        <img src="#" alt="image">
+                                        <img src="{{ volume.capa_vol.url }}" alt="image">
                                     </a>
 
                                 </div>
@@ -103,6 +108,89 @@
             </div>
         </div>
     </div>
+    <div class="card-footer"></div>
 </div>
 
+
+<div>
+    <div align="center">
+        <h1 class="display-4">Comentar</h1>
+    </div>
+</div>
+
+<div class="container" xmlns="http://www.w3.org/1999/html">
+    <div class="row">
+        <div class="col-xl-12">
+            <form method="POST" class="form" action="#envia_comentario">
+                {% csrf_token %}
+                <!--                <table class="table">-->
+                <!--                    {{ form }}-->
+                <!--                    <tr>-->
+                <!--                        <td colspan="2">-->
+                <!--                            <input id="envia_comentario" type="submit" class="btn btn-primaty" value="Enviar">-->
+                <!--                        </td>-->
+                <!--                    </tr>-->
+                <!--                </table>-->
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Nome:</label>
+                        <input type="text" name="nome_comentario" maxlength="255"
+                               class="form-control form-control-solid" placeholder="Digite seu nome:">
+                    </div>
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="email" name="email_comentario" maxlength="254"
+                               class="form-control form-control-solid" placeholder="Digite seu email:">
+                    </div>
+                    <div class="form-group">
+                        <label>Comentário:</label>
+                        <textarea class="form-control form-control-solid" rows="5" name="comentario"
+                                  placeholder="Digite seu coméntario:"></textarea>
+                    </div>
+                </div>
+                <div align="center">
+                    <button id="envia_comentario" type="submit" class="btn btn-primary mr-2">Enviar</button>
+                    <button type="reset" class="btn btn-secondary">Cancelar</button>
+                </div>
+            </form>
+
+            </br>
+
+            <div class="card-footer"></div>
+
+            {% if comentarios %}
+            <div>
+                <div align="center">
+                    <h1 class="display-5">Comentários {{ comentarios.count }}</h1>
+                </div>
+
+                {% for comentario in comentarios %}
+
+                <div class="card card-custom bg-success">
+                    <div class="card-header border-0">
+                        <div class="card-title">
+                                <span class="card-icon">
+                                    <i class="flaticon2-chat-1 text-white"></i>
+                                </span>
+                            <h3 class="card-label text-white">
+                                {{ comentario.nome_comentario }}
+                                </br>
+                                <small style="font-size: 12px;">{{ comentario.data_comentario }}</small>
+                            </h3>
+
+                        </div>
+                    </div>
+                    <div class="separator separator-solid separator-white opacity-20"></div>
+                    <div class="card-body text-white">
+                        {{ comentario.comentario}}
+                    </div>
+                </div>
+
+                {% endfor %}
+
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
 {% endblock %}

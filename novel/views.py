@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView
-from .models import Novel
+from .models import Novel, Volume, Capitulo
 from django.db.models import Q, Count, Case, When
 from comentarios.forms import FormComentario
+from comentarios.models import Comentario
 
 
 class NovelIndex(ListView):
@@ -69,3 +70,21 @@ class NovelDetalhes(UpdateView):
     form_class = FormComentario
     context_object_name = 'novel'
 
+    def get_context_data(self, **kwargs):
+        contexto = super().get_context_data(**kwargs)
+        novel = self.get_object()
+        comentarios = Comentario.objects.filter(publicado_comentario=True,
+                                                novel_comentario=novel.id)
+        contexto['comentarios'] = comentarios
+        return contexto
+
+    def form_valid(self, form):
+        novel = self.get_object()
+        comentario = Comentario(**form.cleaned_data)
+        comentario.novel_comentario = novel
+
+        if self.request.user.is_authenticated:
+            comentario.usuario_comentario = self.request.user
+
+        comentario.save()
+        return redirect('novel_detalhes', pk=novel.id)
