@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView
-from .models import Novel, Volume, Capitulo
+from .models import Novel
+from volumes.models import Volume
 from django.db.models import Q, Count, Case, When
 from comentarios.forms import FormComentario
 from comentarios.models import Comentario
@@ -39,7 +40,6 @@ class NovelBusca(NovelIndex):
 
         qs = qs.filter(
             Q(titulo__icontains=termo) |
-            Q(conteudo__icontains=termo) |
             Q(excerto__icontains=termo) |
             Q(categoria__nome_cat__iexact=termo) |
             Q(autor__username__iexact=termo)
@@ -69,6 +69,14 @@ class NovelDetalhes(UpdateView):
     model = Novel
     form_class = FormComentario
     context_object_name = 'novel'
+
+    # def mostrar_volumes(self):
+    #     novel = self.get_object()
+    #     volumes = Volume.objects.filter(novel_vol=novel.id)
+    #     print(volumes)
+    #     return render(self, 'novel/novel_detalhes.html', {
+    #         'volumes': volumes
+    #     })
 
     def get_context_data(self, **kwargs):
         contexto = super().get_context_data(**kwargs)

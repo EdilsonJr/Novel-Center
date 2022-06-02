@@ -7,7 +7,7 @@
         <div class="col-xl"></div>
         <div class="col-xl-8 text-center">
             <p class="text-muted">
-                <small>
+                <small style="font-size: 12px;">
                     {{ novel.autor }} | {{ novel.data }} | {{ novel.categoria }}
                 </small>
             </p>
@@ -33,7 +33,6 @@
             <h4><strong>Gênero</strong> - {{ novel.categoria }}</h4>
             <h4><strong>Status</strong> - {{ novel.status }}</h4>
             <h4><strong>Volumes disponiveis</strong> - {{ novel.qdt_volumes }}</h4>
-            <h4><strong>teste</strong> - {{ novel.titulo_vol }}</h4>
         </div>
         <div class="col-xl"></div>
     </div>
@@ -65,7 +64,7 @@
                                 <div>
 
                                     <a href="#">
-                                        <img src="{{ volume.capa_vol.url }}" alt="image">
+                                        <img src="#" alt="image">
                                     </a>
 
                                 </div>
@@ -123,27 +122,19 @@
         <div class="col-xl-12">
             <form method="POST" class="form" action="#envia_comentario">
                 {% csrf_token %}
-                <!--                <table class="table">-->
-                <!--                    {{ form }}-->
-                <!--                    <tr>-->
-                <!--                        <td colspan="2">-->
-                <!--                            <input id="envia_comentario" type="submit" class="btn btn-primaty" value="Enviar">-->
-                <!--                        </td>-->
-                <!--                    </tr>-->
-                <!--                </table>-->
                 <div class="card-body">
                     <div class="form-group">
-                        <label>Nome:</label>
+                        <label style="font-size: 14px;">Nome:</label>
                         <input type="text" name="nome_comentario" maxlength="255"
                                class="form-control form-control-solid" placeholder="Digite seu nome:">
                     </div>
                     <div class="form-group">
-                        <label>E-mail</label>
+                        <label style="font-size: 14px;">E-mail</label>
                         <input type="email" name="email_comentario" maxlength="254"
                                class="form-control form-control-solid" placeholder="Digite seu email:">
                     </div>
                     <div class="form-group">
-                        <label>Comentário:</label>
+                        <label style="font-size: 14px;">Comentário:</label>
                         <textarea class="form-control form-control-solid" rows="5" name="comentario"
                                   placeholder="Digite seu coméntario:"></textarea>
                     </div>
@@ -161,12 +152,13 @@
             {% if comentarios %}
             <div>
                 <div align="center">
-                    <h1 class="display-5">Comentários {{ comentarios.count }}</h1>
+                    <h1 class="display-5">Comentários</h1>
                 </div>
+                </br>
 
                 {% for comentario in comentarios %}
 
-                <div class="card card-custom bg-success">
+                <div class="card card-custom" style="background-color: #3D3D3D">
                     <div class="card-header border-0">
                         <div class="card-title">
                                 <span class="card-icon">
@@ -182,9 +174,12 @@
                     </div>
                     <div class="separator separator-solid separator-white opacity-20"></div>
                     <div class="card-body text-white">
-                        {{ comentario.comentario}}
+                        <span style="font-size: 16px;">
+                            {{ comentario.comentario}}
+                        </span>
                     </div>
                 </div>
+                </br>
 
                 {% endfor %}
 

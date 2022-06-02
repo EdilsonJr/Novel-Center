@@ -24,22 +24,22 @@ class Novel(models.Model):
         return self.titulo
 
 
-class Volume(models.Model):
-    novel_vol = models.ForeignKey(Novel, on_delete=models.CASCADE)
-    titulo_vol = models.CharField(max_length=50)
-    capa_vol = models.ImageField(upload_to='vol_capa/%Y/%m/%d')
-    num_vol = models.IntegerField()
-    descriacao_vol = models.TextField()
-    data_vol = models.DateTimeField(default=timezone.now)
-
-    def __str__(self):
-        return self.titulo_vol
-
-
-class Capitulo(models.Model):
-    volume_cap = models.ForeignKey(Volume, on_delete=models.CASCADE)
-    titulo_cap = models.CharField(max_length=100)
-    conteudo_cap = models.TextField()
-
-    def __str__(self):
-        return self.titulo_cap
+# class Volume(models.Model):
+#     novel_vol = models.ForeignKey(Novel, on_delete=models.CASCADE)
+#     titulo_vol = models.CharField(max_length=50)
+#     capa_vol = models.ImageField(upload_to='vol_capa/%Y/%m/%d')
+#     num_vol = models.IntegerField()
+#     descriacao_vol = models.TextField()
+#     data_vol = models.DateTimeField(default=timezone.now)
+#
+#     def __str__(self):
+#         return self.titulo_vol
+#
+#
+# class Capitulo(models.Model):
+#     volume_cap = models.ForeignKey(Volume, on_delete=models.CASCADE)
+#     titulo_cap = models.CharField(max_length=100)
+#     conteudo_cap = models.TextField()
+#
+#     def __str__(self):
+#         return self.titulo_cap

@@ -1,12 +1,12 @@
 from django.contrib import admin
 from . import models
 from django_summernote.admin import SummernoteModelAdmin
-from .models import Novel, Capitulo
+from .models import Novel
 
 
-class VolumeInline(admin.TabularInline):
-    model = models.Volume
-    extra = 1
+# class VolumeInline(admin.TabularInline):
+#     model = models.Volume
+#     extra = 1
 
 
 class NovelAdmin(SummernoteModelAdmin):
@@ -20,6 +20,6 @@ class NovelAdmin(SummernoteModelAdmin):
 
 
 admin.site.register(Novel, NovelAdmin)
-admin.site.register(models.Volume)
-admin.site.register(models.Capitulo)
+# admin.site.register(models.Volume)
+# admin.site.register(models.Capitulo)
 
