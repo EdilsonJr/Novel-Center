@@ -15,7 +15,7 @@ class NovelIndex(ListView):
 
     def get_queryset(self):
         qs = super().get_queryset()
-        qs = qs.order_by('-id').filter(publicado=True)
+        qs = qs.order_by('id').filter(publicado=True)
         qs = qs.annotate(
             qtd_comentarios=Count(
                 Case(
