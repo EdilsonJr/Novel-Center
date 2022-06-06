@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView
-from .models import Novel
-from volumes.models import Volume
+from .models import Novel, Volume
 from django.db.models import Q, Count, Case, When
 from comentarios.forms import FormComentario
 from comentarios.models import Comentario
@@ -70,14 +69,6 @@ class NovelDetalhes(UpdateView):
     form_class = FormComentario
     context_object_name = 'novel'
 
-    # def mostrar_volumes(self):
-    #     novel = self.get_object()
-    #     volumes = Volume.objects.filter(novel_vol=novel.id)
-    #     print(volumes)
-    #     return render(self, 'novel/novel_detalhes.html', {
-    #         'volumes': volumes
-    #     })
-
     def get_context_data(self, **kwargs):
         contexto = super().get_context_data(**kwargs)
         novel = self.get_object()
@@ -96,3 +87,10 @@ class NovelDetalhes(UpdateView):
 
         comentario.save()
         return redirect('novel_detalhes', pk=novel.id)
+
+
+class VolumeDetalhes(UpdateView):
+    template_name = 'novel/volume_detalhes.html'
+    model = Volume
+    form_class = FormComentario
+    context_object_name = 'volume'

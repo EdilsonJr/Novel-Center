@@ -33,7 +33,6 @@
             <h4><strong>Gênero</strong> - {{ novel.categoria }}</h4>
             <h4><strong>Status</strong> - {{ novel.status }}</h4>
             <h4><strong>Volumes disponiveis</strong> - {{ novel.qdt_volumes }}</h4>
-            <h4><strong>Testa</strong> - {{ novel.titulo_vol }}</h4>
         </div>
         <div class="col-xl"></div>
     </div>
@@ -55,30 +54,34 @@
     <div class="d-flex flex-column-fluid">
         <div class="container">
             <div class="row">
-
+                {% for volume in novel.volume_set.all %}
                 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
                     <div class="card card-custom gutter-b card-stretch">
                         <div class="card-body pt-4">
                             <!--begin::User-->
-                            <div class="d-flex align-items-center mb-7">
+                            <div class="d-flex align-items-center mb-7" style="justify-content: center;">
                                 <!--begin::Pic-->
-                                <div>
-
-                                    <a href="#">
-                                        <img src="#" alt="image">
-                                    </a>
-
-                                </div>
+                                {% if volume.capa_vol %}
+                                <a href="#">
+                                    <img src="{{ volume.capa_vol.url }}" alt="image"></a>
+                                {% endif %}
                                 <!--end::Pic-->
                             </div>
                             <!--end::User-->
                             <!--begin::Desc-->
-                            <!--begin::Title-->
-                            <div class="d-flex flex-column">
-                                <a href="#"
-                                   class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0"></a>
-                                <span class="text-muted font-weight-bold"></span>
+                            <!--begin::Volume-->
+                            <div class="d-flex flex-column" align="center">
+                                <h3>
+                                    {{ volume.vol_vol }}
+                                </h3>
                                 <br/>
+                            </div>
+                            <!--end::Volume-->
+                            <!--begin::Title-->
+                            <div class="d-flex flex-column" align="center">
+                                <a href="#"
+                                   class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">{{ volume.titulo_vol }}</a>
+                                <span class="text-muted font-weight-bold">{{ volume.novel_vol }}</span>
                             </div>
                             <!--end::Title-->
                             <p class="mb-7">
@@ -86,25 +89,17 @@
                                 <!--begin::Info-->
                             <div class="mb-7">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <span class="text-dark-75 font-weight-bolder mr-2">Número de volumes:</span>
-                                    <a href="#" class="text-muted text-hover-primary"></a>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-cente my-1">
-                                    <span class="text-dark-75 font-weight-bolder mr-2">Comentários:</span>
-                                    <a href="#" class="text-muted text-hover-primary"></a>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center">
                                     <span class="text-dark-75 font-weight-bolder mr-2">Publicado em:</span>
-                                    <span class="text-muted font-weight-bold"></span>
+                                    <span class="text-muted font-weight-bold">{{ volume.data_vol }}</span>
                                 </div>
                             </div>
                             <!--end::Info-->
-                            <a href="{% url 'novel_detalhes' novel.id %}"
+                            <a href="{% url 'volume_detalhes' volume.id %}"
                                class="btn btn-block btn-sm btn-light-success font-weight-bolder text-uppercase py-4">Ler</a>
                         </div>
                     </div>
                 </div>
-
+                {% endfor %}
             </div>
         </div>
     </div>

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{%block title%}{{ volume.vol_vol }} - {{ volume.novel_vol }}{%endblock%}
+{% block conteudo %}
+
+<div class="container" xmlns="http://www.w3.org/1999/html">
+    <div class="row pt-5">
+        <div class="col-xl"></div>
+        <div class="col-xl-8 text-center">
+            <h3 class="display-3">{{ volume.titulo_vol }}</h3>
+            <div class="card-footer"></div>
+            <div>
+                {% if volume.capa_vol %}
+                <img class="img-fluid pb-5 " src="{{ volume.capa_vol.url }}" alt="{{ volume.titulo_vol }}">
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-xl"></div>
+    </div>
+
+    <div class="row pt-5">
+        <div class="col-xl"></div>
+        <div class="col-xl-8">
+            <br/>
+            <h4>{{ volume.descriacao_vol|safe }} </h4></br>
+            <h4><strong>Novel</strong> - {{ volume.novel_vol }}</h4>
+            <h4><strong>Volume</strong> - {{ volume.vol_vol }}</h4>
+            <h4><strong>Título</strong> - {{ volume.titulo_vol }}</h4>
+            <h4><strong>Capítulos</strong> - *****</h4>
+            <h4><strong>Revisão</strong> - Shoks</h4>
+            <h4><strong>Data</strong> - {{ volume.data_vol }}</h4>
+        </div>
+        <div class="col-xl"></div>
+    </div>
+
+    </br>
+    </br>
+
+    <div class="card-footer"></div>
+
+    <div>
+        <div align="center">
+            <h1 class="display-4">Capítulos</h1>
+        </div>
+    </div>
+
+    </br>
+
+    <div class="card-footer"></div>
+</div>
+
+{% endblock %}
