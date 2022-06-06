@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView
-from .models import Novel, Volume
+from .models import Novel, Volume, Capitulo
 from django.db.models import Q, Count, Case, When
 from comentarios.forms import FormComentario
 from comentarios.models import Comentario
@@ -94,3 +94,10 @@ class VolumeDetalhes(UpdateView):
     model = Volume
     form_class = FormComentario
     context_object_name = 'volume'
+
+
+class CapituloDetalhes(UpdateView):
+    template_name = 'novel/capitulo_detalhes.html'
+    model = Capitulo
+    form_class = FormComentario
+    context_object_name = 'capitulo'

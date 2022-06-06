@@ -35,12 +35,13 @@ class Volume(models.Model):
 
     def __str__(self):
         return self.titulo_vol
-#
-#
-# class Capitulo(models.Model):
-#     volume_cap = models.ForeignKey(Volume, on_delete=models.CASCADE)
-#     titulo_cap = models.CharField(max_length=100)
-#     conteudo_cap = models.TextField()
-#
-#     def __str__(self):
-#         return self.titulo_cap
+
+
+class Capitulo(models.Model):
+    volume_cap = models.ForeignKey(Volume, on_delete=models.CASCADE)
+    titulo_cap = models.CharField(max_length=100)
+    conteudo_cap = models.TextField()
+    data_cap = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.titulo_cap

@@ -62,7 +62,7 @@
                             <div class="d-flex align-items-center mb-7" style="justify-content: center;">
                                 <!--begin::Pic-->
                                 {% if volume.capa_vol %}
-                                <a href="#">
+                                <a href="{% url 'volume_detalhes' volume.id %}">
                                     <img src="{{ volume.capa_vol.url }}" alt="image"></a>
                                 {% endif %}
                                 <!--end::Pic-->
@@ -79,7 +79,7 @@
                             <!--end::Volume-->
                             <!--begin::Title-->
                             <div class="d-flex flex-column" align="center">
-                                <a href="#"
+                                <a href="{% url 'volume_detalhes' volume.id %}"
                                    class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">{{ volume.titulo_vol }}</a>
                                 <span class="text-muted font-weight-bold">{{ volume.novel_vol }}</span>
                             </div>

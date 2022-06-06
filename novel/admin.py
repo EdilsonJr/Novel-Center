@@ -1,11 +1,15 @@
 from django.contrib import admin
-from . import models
 from django_summernote.admin import SummernoteModelAdmin
-from .models import Novel
+from .models import Novel, Volume, Capitulo
 
 
 class VolumeInline(admin.TabularInline):
-    model = models.Volume
+    model = Volume
+    extra = 1
+
+
+class CapituloInline(admin.TabularInline):
+    model = Capitulo
     extra = 1
 
 
@@ -19,12 +23,20 @@ class NovelAdmin(SummernoteModelAdmin):
     ]
 
 
-class VolumeAdmin(SummernoteModelAdmin):
+class VolumeAdmin(admin.ModelAdmin):
     list_display = ('id', 'vol_vol', 'novel_vol', 'titulo_vol')
     list_display_links = ('id', 'vol_vol')
+    inlines = [
+        CapituloInline
+    ]
+
+
+class CapituloAdmin(SummernoteModelAdmin):
+    list_display = ('id', 'volume_cap', 'titulo_cap')
+    list_display_links = ('id', 'volume_cap', 'titulo_cap')
+    summernote_fields = ('conteudo_cap',)
 
 
 admin.site.register(Novel, NovelAdmin)
-admin.site.register(models.Volume, VolumeAdmin)
-# admin.site.register(models.Capitulo)
-
+admin.site.register(Volume, VolumeAdmin)
+admin.site.register(Capitulo, CapituloAdmin)
