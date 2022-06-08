@@ -49,15 +49,16 @@
             <div class="row">
                 {% for capitulo in volume.capitulo_set.all %}
                  <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                    <div class="card card-custom gutter-b card-stretch">
+                    <div class="card card-custom gutter-b card-stretch" style="background-color:#BC3131">
                         <div class="card-body pt-4">
                             <!--begin::Desc-->
                             <!--begin::Title-->
                             <div class="d-flex flex-column" align="center">
+                                <span class="text-white font-weight-bold">{{ volume.vol_vol }}</span>
+                                <span class="text-white font-weight-bold">{{ capitulo.volume_cap }}</span>
+                                <br/>
                                 <a href="#"
-                                   class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">{{ capitulo.titulo_cap }}</a>
-                                <span class="text-muted font-weight-bold">{{ volume.novel_vol }}</span>
-                                <span class="text-muted font-weight-bold">{{ capitulo.volume_cap }}</span>
+                                   class="text-white font-weight-bold text-hover-primary font-size-h4 mb-0">{{ capitulo.titulo_cap }}</a>
                             </div>
                             <!--end::Title-->
                             <p class="mb-7">
@@ -65,8 +66,8 @@
                                 <!--begin::Info-->
                             <div class="mb-7">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <span class="text-dark-75 font-weight-bolder mr-2">Publicado em:</span>
-                                    <span class="text-muted font-weight-bold">{{ capitulo.data_cap }}</span>
+                                    <span class="text-white font-weight-bolder mr-2">Publicado em:</span>
+                                    <span class="text-white font-weight-bold">{{ capitulo.data_cap }}</span>
                                 </div>
                             </div>
                             <!--end::Info-->
