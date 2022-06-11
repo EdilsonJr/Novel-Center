@@ -63,7 +63,7 @@ def cadastro(request):
         user.foto = foto
         user.save()
 
-        return HttpResponseRedirect(reverse('login'))
+        return HttpResponseRedirect(reverse('index'))
 
 
 def login(request):
