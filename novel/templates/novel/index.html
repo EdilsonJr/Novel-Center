@@ -69,7 +69,7 @@
                             <!--begin::Pic-->
                             <div>
                                 {% if novel.imagem %}
-                                <a href="{% url 'novel_detalhes' novel.id %}">
+                                <a href="{% url 'novel_detalhes' novel.slug %}">
                                     <img src="{{ novel.imagem.url }}" alt="image">
                                 </a>
                                 {% endif %}
@@ -103,7 +103,7 @@
                             </div>
                         </div>
                         <!--end::Info-->
-                        <a href="{% url 'novel_detalhes' novel.id %}" style="position: relative; background: #444; color:#fff"
+                        <a href="{% url 'novel_detalhes' novel.slug %}" style="position: relative; background: #444; color:#fff"
                            class="btn btn-block btn-sm btn-light-success font-weight-bolder text-uppercase py-4">Ler</a>
                     </div>
                 </div>
