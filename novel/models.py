@@ -41,14 +41,6 @@ class Volume(models.Model):
     num_vol = models.IntegerField()
     descriacao_vol = models.TextField()
     data_vol = models.DateTimeField(default=timezone.now)
-    slug_vol = models.SlugField(unique=True, blank=True, null=True)
-
-    def save(self, *args, **kwargs):
-        if not self.slug_vol:
-            slug_vol = f'{slugify(self.vol_vol)}'
-            self.slug_vol = slug_vol
-
-        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.titulo_vol
