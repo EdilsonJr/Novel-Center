@@ -96,6 +96,7 @@ class VolumeDetalhes(UpdateView):
     form_class = FormComentario
     context_object_name = 'volume'
     slug_url_kwarg = 'slug_vol'
+    slug_field = 'slug_vol'
 
 
 class CapituloDetalhes(UpdateView):
@@ -103,3 +104,5 @@ class CapituloDetalhes(UpdateView):
     model = Capitulo
     form_class = FormComentario
     context_object_name = 'capitulo'
+    slug_url_kwarg = 'slug_cap'
+    slug_field = 'slug_cap'

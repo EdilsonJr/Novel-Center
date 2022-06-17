@@ -59,6 +59,15 @@ class Capitulo(models.Model):
     titulo_cap = models.CharField(max_length=100)
     conteudo_cap = models.TextField()
     data_cap = models.DateTimeField(default=timezone.now)
+    slug_cap = models.SlugField(unique=True, blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug_cap:
+            slug = f'{slugify(self.titulo_cap)}'
+            self.slug_cap = slug
+
+        super().save(*args, **kwargs)
+
 
     def __str__(self):
         return self.titulo_cap
