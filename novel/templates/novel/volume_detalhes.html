@@ -57,7 +57,7 @@
                                 <span class="text-white font-weight-bold">{{ volume.vol_vol }}</span>
                                 <span class="text-white font-weight-bold">{{ capitulo.volume_cap }}</span>
                                 <br/>
-                                <a href="#"
+                                <a href="{% url 'capitulo_detalhes' capitulo.slug_cap %}"
                                    class="text-white font-weight-bold text-hover-primary font-size-h4 mb-0">{{ capitulo.titulo_cap }}</a>
                             </div>
                             <!--end::Title-->
@@ -71,7 +71,7 @@
                                 </div>
                             </div>
                             <!--end::Info-->
-                            <a href="{% url 'capitulo_detalhes' capitulo.id %}"
+                            <a href="{% url 'capitulo_detalhes' capitulo.slug_cap %}"
                                class="btn btn-block btn-sm btn-light-success font-weight-bolder text-uppercase py-4">Ler</a>
                         </div>
                     </div>

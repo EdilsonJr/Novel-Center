@@ -107,7 +107,6 @@ def logout(request):
     try:
         del request.session['is_logged']
         cache.clear()
-        request.session['is_logged'] = False
         return redirect('index')
     except:
         return redirect('index')
