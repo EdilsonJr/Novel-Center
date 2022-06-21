@@ -7,6 +7,9 @@ from django.urls import reverse
 from django.core.cache import cache
 
 
+# Modificar sistema de login
+
+
 def cadastro(request):
     if request.method == 'GET':
         return render(request, 'users/cadastro.html')
