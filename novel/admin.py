@@ -24,7 +24,7 @@ class NovelAdmin(SummernoteModelAdmin):
 
 
 class VolumeAdmin(admin.ModelAdmin):
-    list_display = ('id', 'vol_vol', 'novel_vol', 'titulo_vol')
+    list_display = ('id', 'vol_vol', 'novel_vol',)
     list_display_links = ('id', 'vol_vol')
     inlines = [
         CapituloInline
@@ -32,8 +32,8 @@ class VolumeAdmin(admin.ModelAdmin):
 
 
 class CapituloAdmin(SummernoteModelAdmin):
-    list_display = ('id', 'volume_cap', 'titulo_cap')
-    list_display_links = ('id', 'volume_cap', 'titulo_cap')
+    list_display = ('id', 'numero_cap', 'volume_cap', 'titulo_cap')
+    list_display_links = ('id', 'numero_cap', 'volume_cap', 'titulo_cap')
     summernote_fields = ('conteudo_cap',)
 
 

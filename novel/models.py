@@ -36,7 +36,6 @@ class Novel(models.Model):
 class Volume(models.Model):
     novel_vol = models.ForeignKey(Novel, on_delete=models.CASCADE)
     vol_vol = models.CharField(max_length=50)
-    titulo_vol = models.CharField(max_length=50)
     capa_vol = models.ImageField(upload_to='vol_capa/%Y/%m/%d')
     num_vol = models.IntegerField()
     descriacao_vol = models.TextField()
@@ -51,19 +50,20 @@ class Volume(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.titulo_vol
+        return self.vol_vol
 
 
 class Capitulo(models.Model):
     volume_cap = models.ForeignKey(Volume, on_delete=models.CASCADE)
     titulo_cap = models.CharField(max_length=100)
+    numero_cap = models.CharField(max_length=100)
     conteudo_cap = models.TextField()
     data_cap = models.DateTimeField(default=timezone.now)
     slug_cap = models.SlugField(unique=True, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         if not self.slug_cap:
-            slug = f'{slugify(self.titulo_cap)}'
+            slug = f'{slugify(self.numero_cap) + "-" + slugify(self.titulo_cap)}'
             self.slug_cap = slug
 
         super().save(*args, **kwargs)
