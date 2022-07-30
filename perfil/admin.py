@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import UserNormal
+from .models import Perfil
 
 
-class UserNormalAdmin(admin.ModelAdmin):
+class PerfilAdmin(admin.ModelAdmin):
     list_display = ('id', 'username', 'nome', 'pais')
     list_display_links = ('id', 'username')
 
 
-admin.site.register(UserNormal, UserNormalAdmin)
+admin.site.register(Perfil, PerfilAdmin)

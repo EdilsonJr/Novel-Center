@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponsePermanentRedirect
-from .models import UserNormal
+from .models import Perfil
 from django.core.validators import validate_email
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages, auth
@@ -9,7 +9,7 @@ from django.core.cache import cache
 
 def cadastro(request):
     if request.method == 'GET':
-        return render(request, 'users/cadastro.html')
+        return render(request, 'perfil/cadastro.html')
     else:
         nome = request.POST.get('nome')
         username = request.POST.get('username')
@@ -24,36 +24,36 @@ def cadastro(request):
         if not username or not email or not username or not senha or not senha_confirma or not nome or not pais\
                 or not telefone or not foto:
             messages.error(request, 'Não deixe nenhum campo em branco')
-            return render(request, 'users/cadastro.html')
+            return render(request, 'perfil/cadastro.html')
 
         # Validador de email
         try:
             validate_email(email)
         except:
             messages.error(request, 'Email inválido')
-            return render(request, 'users/cadastro.html')
+            return render(request, 'perfil/cadastro.html')
 
         # Validador de senha
         if len(senha) < 8:
             messages.error(request, 'Senha precisa ter 8 caracteres ou mais.')
-            return render(request, 'users/cadastro.html')
+            return render(request, 'perfil/cadastro.html')
 
         if senha != senha_confirma:
             messages.error(request, 'Senhas não conferem.')
-            return render(request, 'users/cadastro.html')
+            return render(request, 'perfil/cadastro.html')
 
         # Verificação de usuario e email
-        if UserNormal.objects.filter(username=username).exists():
+        if Perfil.objects.filter(username=username).exists():
             messages.error(request, 'Usuario já existe.')
-            return render(request, 'users/cadastro.html')
+            return render(request, 'perfil/cadastro.html')
 
-        if UserNormal.objects.filter(email=email).exists():
+        if Perfil.objects.filter(email=email).exists():
             messages.error(request, 'Email já cadastrado.  ')
-            return render(request, 'users/cadastro.html')
+            return render(request, 'perfil/cadastro.html')
 
         messages.success(request, 'Registrado com sucesso!')
 
-        user = UserNormal()
+        user = Perfil()
         user.nome = nome
         user.username = username
         user.telefone = telefone
@@ -68,17 +68,17 @@ def cadastro(request):
 
 def login(request):
     if request.method != 'POST':
-        return render(request, 'users/login.html')
+        return render(request, 'perfil/login.html')
 
     username = request.POST.get('username')
     password = request.POST.get('senha')
 
     try:
-        user = get_object_or_404(UserNormal, username=username, senha=password)
+        user = get_object_or_404(Perfil, username=username, senha=password)
         request.session['is_logged'] = True
     except:
         messages.error(request, 'Username ou senha inválida')
-        return render(request, 'users/login.html')
+        return render(request, 'perfil/login.html')
 
     try:
         foto = user.foto.url
@@ -86,7 +86,7 @@ def login(request):
         foto = None
 
     if not user:
-        return render(request, 'users/login.html')
+        return render(request, 'perfil/login.html')
     else:
         user_key = user.username
         request.session['user_key'] = user_key

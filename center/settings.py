@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'novel',
-    'users',
+    'perfil',
     'categorias',
     'comentarios',
     'django.contrib.admin',
